@@ -17,11 +17,12 @@ interface LoginUserArgs {
 
 interface AddBooksArgs {
     bookData: {
-        authors: []
-        description: String
-        title: String
-        image: String
-        link: String
+        bookId: string;
+        authors: string[];
+        description: string;
+        title: string;
+        image: string;
+        link: string;
     }
 }
 
@@ -61,21 +62,19 @@ const resolvers = {
 
             return { token, user };
         },
-    },
-    saveBook: async (_parent: any, { bookData }: AddBooksArgs, context: any) => {
-        if (context.user) {
-            return User.findByIdAndUpdate(
-                context.user._id ,
+        saveBook: async (_parent: any, { bookData }: AddBooksArgs, context: any) => {
+        if (!context.user) {
+            throw AuthenticationError;
+        } 
+
+            return await User.findByIdAndUpdate(
+                context.user._id,
                 { $addToSet: { savedBooks: bookData } },
                 { new: true, runValidators: true }
             );
-
-        }
-        throw AuthenticationError;
-        ('You need to be logged in!');
-    },
-    
-    removeBook: async (_parent: any, { bookId }: { bookId: string }, context: any) => {
+        
+        },
+        removeBook: async (_parent: any, { bookId }: { bookId: string }, context: any) => {
         if (context.user) {
             return User.findOneAndUpdate(
                 { _id: context.user._id },
@@ -86,7 +85,7 @@ const resolvers = {
         } 
                 throw AuthenticationError;
     },
-
+    },
 }
 
 export default resolvers;
