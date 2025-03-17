@@ -6,9 +6,9 @@ import { removeBookId } from '../utils/localStorage';
 import { REMOVE_BOOK } from '../utils/mutations';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-const [removeBook] = useMutation(REMOVE_BOOK);
 
 const SavedBooks = () => {
+  const [removeBook] = useMutation(REMOVE_BOOK);
   const { loading, data } = useQuery(GET_ME);
 
   const userData = data?.me || {
