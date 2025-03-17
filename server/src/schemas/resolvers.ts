@@ -16,7 +16,7 @@ interface LoginUserArgs {
 }
 
 interface AddBooksArgs {
-    input: {
+    bookData: {
         authors: []
         description: String
         title: String
@@ -62,11 +62,11 @@ const resolvers = {
             return { token, user };
         },
     },
-    saveBook: async (_parent: any, { input }: AddBooksArgs, context: any) => {
+    saveBook: async (_parent: any, { bookData }: AddBooksArgs, context: any) => {
         if (context.user) {
-            return User.findOneAndUpdate(
-                { _id: context.user._id },
-                { $addToSet: { input } },
+            return User.findByIdAndUpdate(
+                context.user._id ,
+                { $addToSet: { savedBooks: bookData } },
                 { new: true, runValidators: true }
             );
 
