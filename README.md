@@ -1,13 +1,13 @@
 # module18challenge
 Solved code for the module 18 challenge
 
-Deployed application
+## Deployed application
 https://module18challenge.onrender.com/
 
-Description
+## Description
 This project solves the challenge for Module 18 with Atlas MongoDB, Apollo, Express and JWT. It is a webpage that allows a user to create a profile and search for books and add them to a list.
 
-Usage
+## Usage
   1. Create a new user by clicking on "Login/Sign Up" at the top right corner of the page.
   ![image](https://github.com/user-attachments/assets/1b3899fe-8d7e-4b82-a40e-70af7268f297)
 
@@ -24,26 +24,26 @@ Usage
 
 7. You may click on the "Delete  This Book" if you wish to delete a book.  
 
-Installation
+## Installation
 In order to use this application ou may need to install NPM packages and complie the code:
 
-  npm i
-  npm run client:build
-  npm run server:build
+     npm i
+     npm run client:build
+     npm run server:build
 
 Then you may want to run the following commands for dev test:
 
-  npm run start:dev
+     npm run start:dev
 
 For production, use the following command: 
   
-  npm run start
+     npm run start
 
-Credits
+## Credits
 Fabian Saldierna.
 
-License
+## License
 An MIT standard license was used. You may refer to it from the repo.
 
-Features
+## Features
 Implemented an Atlas DB, JWT and DB access with mongoose.
